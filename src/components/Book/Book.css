@@ -1,0 +1,10 @@
+.bookContainer {
+    display: flex;
+}
+.imgContainer {
+
+}
+
+.infoContainer p{
+    font-size: 1em;
+}
