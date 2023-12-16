@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+import Search from "./components/Search/Search";
 import Book from "./components/Book/Book";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <>
+      <Search />
       <Book />
     </>
   );
