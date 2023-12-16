@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './Book.css'
 
-const Book = () => {
+const Book = (props) => {
   const [title, setTitle] = useState(null);
   const [author, setAuthor] = useState(null);
   const [summary, setSummary] = useState(null);
@@ -49,14 +49,14 @@ const Book = () => {
     <section className="bookContainer" >
       <section className="imgContainer">
         <img
-          src={`https://covers.openlibrary.org/b/id/${cover}-M.jpg`}
+          src={props.cover}
           alt=""
         />
       </section>
       <section className="infoContainer">
-        <h2>{title}</h2>
-        <p>Author: {author}</p>
-        <p>{summary}</p>
+        <h2>{props.title}</h2>
+        <p>{props.author}</p>
+        <p>{props.summary}</p>
 
         {/* Book Rating Component */}
         {/* Add/Remove Component */}
