@@ -1,17 +1,14 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
 
 const Search = () => {
-  const [bookName, SetBookName] = useState("");
-  const [bookData, setBookData] = useState("");
-  const [author, setAuthor] = useState(null);
-  const [cover, setCover] = useState(null);
-  const [summary, setSummary] = useState(null);
+  const [bookName, setBookName] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
   const [successful, setSuccessful] = useState(false);
 
   const handleInputChange = (event) => {
-    SetBookName(event.target.value);
+    setBookName(event.target.value);
   };
 
   const searchBook = () => {
@@ -20,42 +17,45 @@ const Search = () => {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        setBookData(data.docs[0].title);
-        setAuthor(data.docs[0].author_name);
-        SetBookName(data.docs[0].title);
-        setCover(data.docs[0].cover_i);
-        setSummary(data.docs[0].first_sentence);
+        setSearchResults(data.docs.slice(0, 10));
         setSuccessful(true);
         setError(null);
       })
       .catch((error) => {
-        console.error("Error fetching weather data:", error);
-        setBookData(null);
-        setError("Error fetching weather data. Please try again later.");
+        console.error("Error fetching book data:", error);
+        setError("Error fetching book data. Please try again later.");
       });
   };
 
-  if (successful == true) {
+  if (successful) {
     return (
       <>
-        {" "}
         <Search />
-        <Book
-          author={author}
-          title={bookName}
-          cover={`https://covers.openlibrary.org/b/id/${cover}-M.jpg`}
-          summary={summary}
-        />
+        <section>
+          <ul>
+            {searchResults.map((book, index) => (
+              <li key={index}>
+                <Book
+                  author={
+                    book.author_name ? book.author_name.join(", ") : "N/A"
+                  }
+                  title={book.title}
+                  cover={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  summary={book.first_sentence}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       </>
     );
   }
+
   return (
     <>
-      <input type="text" value={bookName} onChange={handleInputChange}></input>
+      <input type="text" value={bookName} onChange={handleInputChange} />
       <button onClick={searchBook}>Search</button>
-
-      <span>{bookData}</span>
-      <span>{author}</span>
+      {error && <p>{error}</p>}
     </>
   );
 };
