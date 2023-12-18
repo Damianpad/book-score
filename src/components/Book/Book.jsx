@@ -17,7 +17,7 @@ const Book = (props) => {
         />
       </section>
       <section className="infoContainer">
-        <h2>{props.title}</h2>
+        <h2 className="text-4xl">{props.title}</h2>
         <p>{props.author}</p>
         <p>{props.summary}</p>
 

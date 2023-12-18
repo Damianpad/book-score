@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
-import NoCover from "../../assets/img/no_cover.jpg"
+import NoCover from "../../assets/img/no_cover.jpg";
 
 const Search = () => {
   const [bookName, setBookName] = useState("");
@@ -9,7 +9,7 @@ const Search = () => {
   const [successful, setSuccessful] = useState(false);
   const [counter, setCounter] = useState(0);
   const [base, setBase] = useState(10);
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState([]);
 
   const handleInputChange = (event) => {
     setBookName(event.target.value);
@@ -26,7 +26,7 @@ const Search = () => {
         setSearchResults(data.docs.slice(counter, base));
         setSuccessful(true);
         setError(null);
-        setResults(data)
+        setResults(data);
         console.log(data);
       })
       .catch((error) => {
@@ -54,7 +54,11 @@ const Search = () => {
                     book.author_name ? book.author_name.join(", ") : "N/A"
                   }
                   title={book.title}
-                  cover={book.cover_i == undefined ? NoCover : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  cover={
+                    book.cover_i == undefined
+                      ? NoCover
+                      : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+                  }
                   summary={book.first_sentence}
                 />
               </li>
