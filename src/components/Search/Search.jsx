@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
+import NoCover from "../../assets/img/no_cover.jpg"
 
 const Search = () => {
   const [bookName, setBookName] = useState("");
@@ -53,7 +54,7 @@ const Search = () => {
                     book.author_name ? book.author_name.join(", ") : "N/A"
                   }
                   title={book.title}
-                  cover={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  cover={book.cover_i == undefined ? NoCover : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                   summary={book.first_sentence}
                 />
               </li>

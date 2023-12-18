@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import './Book.css'
 
 const Book = (props) => {
-
+  console.log(props.cover);
+  if (props.cover == undefined){
+    console.log("no cover");
+  }
 
   return (
+    
     <section className="bookContainer" >
       <section className="imgContainer">
         <img
