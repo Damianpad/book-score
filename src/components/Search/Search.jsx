@@ -6,6 +6,9 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
   const [successful, setSuccessful] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [base, setBase] = useState(10);
+  const [results, setResults] = useState([])
 
   const handleInputChange = (event) => {
     setBookName(event.target.value);
@@ -13,18 +16,28 @@ const Search = () => {
 
   const searchBook = () => {
     const apiUrl = `https://openlibrary.org/search.json?q=${bookName}`;
-
+    console.log(counter);
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        setSearchResults(data.docs.slice(0, 10));
+        setCounter(counter + 10);
+        setBase(base + 10);
+        setSearchResults(data.docs.slice(counter, base));
         setSuccessful(true);
         setError(null);
+        setResults(data)
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching book data:", error);
         setError("Error fetching book data. Please try again later.");
       });
+  };
+
+  const moreBooks = () => {
+    setCounter(counter + 10);
+    setBase(base + 10);
+    setSearchResults(results.docs.slice(counter, base));
   };
 
   if (successful) {
@@ -47,6 +60,7 @@ const Search = () => {
             ))}
           </ul>
         </section>
+        <button onClick={moreBooks}>More</button>
       </>
     );
   }
