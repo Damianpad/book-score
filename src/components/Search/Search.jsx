@@ -15,7 +15,14 @@ const Search = () => {
     setBookName(event.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      searchBook();
+    }
+  };
+
   const searchBook = () => {
+    setSearchResults([]);
     const apiUrl = `https://openlibrary.org/search.json?q=${bookName}`;
     console.log(counter);
     fetch(apiUrl)
@@ -41,40 +48,39 @@ const Search = () => {
     setSearchResults(results.docs.slice(counter, base));
   };
 
-  if (successful) {
-    return (
-      <>
-        <Search />
-        <section>
-          <ul>
-            {searchResults.map((book, index) => (
-              <li key={index}>
-                <Book
-                  author={
-                    book.author_name ? book.author_name.join(", ") : "N/A"
-                  }
-                  title={book.title}
-                  cover={
-                    book.cover_i == undefined
-                      ? NoCover
-                      : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
-                  }
-                  summary={book.first_sentence}
-                />
-              </li>
-            ))}
-          </ul>
-        </section>
-        <button onClick={moreBooks}>More</button>
-      </>
-    );
-  }
-
   return (
     <>
-      <input type="text" value={bookName} onChange={handleInputChange} />
-      <button onClick={searchBook}>Search</button>
+      <section className="flex flex-col justify-between">
+        <input
+          type="text"
+          value={bookName}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+        />
+        <button onClick={searchBook}>Search</button>
+      </section>
+
       {error && <p>{error}</p>}
+      <section>
+        <ul>
+          {searchResults.map((book, index) => (
+            <li key={index}>
+              <Book
+                author={book.author_name ? book.author_name.join(", ") : "N/A"}
+                title={book.title}
+                cover={
+                  book.cover_i == undefined
+                    ? NoCover
+                    : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+                }
+                summary={book.first_sentence}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+      <button onClick={moreBooks}>More</button>
     </>
   );
 };
