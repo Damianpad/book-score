@@ -59,7 +59,7 @@ const Search = () => {
       <div role="status">
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+          class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-400 mx-auto my-auto"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -86,9 +86,11 @@ const Search = () => {
           value={bookName}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
-          className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+          className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300 "
         />
-        <button onClick={searchBook}>Search</button>
+        <button onClick={searchBook} className="w-1/2 mx-auto my-">
+          Search
+        </button>
       </section>
 
       {error && <p>{error}</p>}

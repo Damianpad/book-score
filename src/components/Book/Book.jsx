@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Book.css";
 
 const Book = (props) => {
