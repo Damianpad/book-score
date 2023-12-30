@@ -110,6 +110,7 @@ const Search = () => {
                       : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
                   }
                   summary={book.first_sentence}
+                  rating={book.ratings_average}
                 />
               </li>
             ))}
