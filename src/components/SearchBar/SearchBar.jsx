@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Book from "../Book/Book";
-import NoCover from "../../assets/img/no_cover.jpg";
-import SearchBar from "../SearchBar/SearchBar";
 
-const Search = () => {
+const SearchBar = (props) => {
   const [bookName, setBookName] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
@@ -94,7 +91,7 @@ const Search = () => {
             Search
           </button>
         </section>
-        {/* <SearchBar/> */}
+
         <section>
           <ul>
             {searchResults.map((book, index) => (
@@ -125,7 +122,7 @@ const Search = () => {
       <section className="flex flex-col justify-between">
         <input
           type="text"
-          value={bookName}
+          value={props.bookName}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300 "
@@ -134,14 +131,8 @@ const Search = () => {
           Search
         </button>
       </section>
-      {/* <SearchBar
-        name={bookName}
-
-      /> */}
-
-      {error && <p>{error}</p>}
     </>
   );
 };
 
-export default Search;
+export default SearchBar;
