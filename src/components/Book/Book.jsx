@@ -11,9 +11,9 @@ const Book = (props) => {
       <section className="imgContainer ">
         <img src={props.cover} alt="" className=" w-32 h-40 sm:w-60 sm:h-60" />
       </section>
-      <section className="infoContainer flex flex-col">
-        <h2 className="text-2xl">{props.title}</h2>
-        <p>{props.author}</p>
+      <section className="infoContainer flex flex-col items-center justify-center w-full">
+        <h2 className="text-xl">{props.title}</h2>
+        <p className="text-xs">  {props.author}</p>
         {/* <p className="text-xm"> {props.summary}</p> */}
 
         {/* Book Rating Component */}
