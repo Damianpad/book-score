@@ -17,7 +17,7 @@ const Book = (props) => {
 
         {/* Book Rating Component */}
         {/* Add/Remove Component */}
-        <p>{props.rating} / 5</p>
+        {props.rating !== undefined && props.rating !== null ? <p>Ink Score: {props.rating.toFixed(1)} / 5 </p> : <p>No Ink Score</p>}
         <button>Rate </button>
       </section>
     </section>
