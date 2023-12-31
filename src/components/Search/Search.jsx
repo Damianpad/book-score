@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
 import NoCover from "../../assets/img/no_cover.jpg";
 import SearchBar from "../SearchBar/SearchBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
   const [bookName, setBookName] = useState("");
@@ -82,16 +84,19 @@ const Search = () => {
   if (successful) {
     return (
       <>
-        <section className="flex flex-col justify-between">
+        <section className="flex flex-row justify-center focus:outline-none focus:ring focus:border-blue-500 m-4 ">
           <input
             type="text"
             value={bookName}
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
-            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300 "
+            className="px-4 py-2 border border-gray-300 rounded rounded-tr-none rounded-br-none border-r-transparent "
           />
-          <button onClick={searchBook} className="w-1/2 mx-auto my-">
-            Search
+          <button
+            onClick={searchBook}
+            className="border border-gray-300 rounded rounded-tl-none rounded-bl-none border-l-transparent"
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="p-0" />
           </button>
         </section>
         {/* <SearchBar/> */}
@@ -123,16 +128,19 @@ const Search = () => {
 
   return (
     <>
-      <section className="flex flex-col justify-between">
+      <section className="flex flex-row justify-center focus:outline-none focus:ring focus:border-blue-500 m-4 ">
         <input
           type="text"
           value={bookName}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
-          className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300 "
+          className="px-4 py-2 border border-gray-300 rounded rounded-tr-none rounded-br-none border-r-transparent "
         />
-        <button onClick={searchBook} className="w-1/2 mx-auto my-">
-          Search
+        <button
+          onClick={searchBook}
+          className="border border-gray-300 rounded rounded-tl-none rounded-bl-none border-l-transparent"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="p-0" />
         </button>
       </section>
       {/* <SearchBar

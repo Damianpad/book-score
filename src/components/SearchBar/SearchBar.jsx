@@ -131,6 +131,7 @@ const SearchBar = (props) => {
           Search
         </button>
       </section>
+
     </>
   );
 };
