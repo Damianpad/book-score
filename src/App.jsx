@@ -6,6 +6,7 @@ import "./App.css";
 import Search from "./components/Search/Search";
 import Book from "./components/Book/Book";
 import Nav from "./components/Nav/Nav";
+import Login from "./components/Login/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ function App() {
     <> 
       <Nav></Nav>
       <Search />
+      <Login />
     </>
   );
 }
